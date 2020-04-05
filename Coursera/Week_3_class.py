@@ -17,7 +17,6 @@ class CarBase:
             return False
 
 
-
 class Car(CarBase):
 
     def __init__(self, brand=None, photo_file_name=None, carrying=None, passenger_seats_count=None):
