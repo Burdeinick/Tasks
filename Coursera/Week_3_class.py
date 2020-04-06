@@ -21,7 +21,7 @@ class Car(CarBase):
 
     def __init__(self, brand=None, photo_file_name=None, carrying=None, passenger_seats_count=None):
         super().__init__(brand, photo_file_name, carrying)
-        self.passenger_seats_count = int(passenger_seats_count) if passenger_seats_count != None else carrying
+        self.passenger_seats_count = int(passenger_seats_count) if passenger_seats_count != None else passenger_seats_count
         self.car_type = 'car'
 
 
