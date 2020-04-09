@@ -12,7 +12,6 @@ class File:
         self.count = 0
         if not os.path.exists(self.path_to_file_tmp):
             with open(self.path_to_file_tmp, 'w') as f:
-                print(self.path_to_file_tmp)
                 f.write('')
 
     def __str__(self):
