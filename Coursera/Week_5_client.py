@@ -22,7 +22,7 @@ class Client(ClientError):
             data_r = self.sock.recv(1024)
         else:
             data = f'get {data_key}\n'
-            self.sock.sendall(data.encode('utf8'))
+            self.sock.sendall(data.encode())
             data_r = self.sock.recv(1024)
 
         if data_r.decode() == "error\nwrong command\n\n":
@@ -33,7 +33,7 @@ class Client(ClientError):
         else:
             try:
                 dic = {}
-                data_r = data_r.decode('utf8').split('\n')
+                data_r = data_r.decode().split('\n')
                 for line in data_r:
                     if line and (line not in 'ok'):
                         metrica, numb_val, timestamp = line.split()
