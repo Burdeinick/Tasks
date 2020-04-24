@@ -17,11 +17,9 @@ class Client(ClientError):
     def get(self, data_key):
         """ The function for send data to server and processing answers"""
 
-
         if data_key == '*':
             self.sock.sendall('get *\n'.encode())
             data_r = self.sock.recv(1024)
-
         else:
             data = f'get {data_key}\n'
             self.sock.sendall(data.encode())
@@ -31,7 +29,6 @@ class Client(ClientError):
             raise ClientError
 
         if data_r.decode() == "ok\n\n":
-            #print('Я здесь')
             return {}
         else:
             try:
@@ -47,12 +44,9 @@ class Client(ClientError):
                             dic[metrica] = [(int(timestamp), float(numb_val))]
                 for value in dic.values():
                     value.sort(key=lambda x: (x[0], x[1]))
-
                 return dic
             except:
                 raise ClientError
-
-            
 
     def put(self, name_metric, value, timestamp=None):
         """ Sending a data to server for saving """
@@ -63,15 +57,7 @@ class Client(ClientError):
         answer = self.sock.recv(1024)
         if answer.decode() == "error\nwrong command\n\n":
             raise ClientError
-        #elif answer.decode() == 'ok\n\n':
-            #print('Eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
 
-#client = Client("127.0.0.1", 8888, timeout=15)
+# client = Client("127.0.0.1", 8888, timeout=15)
 # print(client.get('*'))
-#client.put('palm.cpu', 0.2, timestamp=1150864247)
-#client.put("test_same_timestamp", 0.0, timestamp=1503319740)
-#client.put("test_same_timestamp", 100.99, timestamp=1503319743)
-#client.put("test_same_timestamp", 12.0, timestamp=1503319740)
-#client.put("test_same_timestamp", 12.5, timestamp=1503319743)
-
-#print(client.get('test_same_timestamp'))
+# client.put("palm.cpu", 0.5, timestamp=1150864247)
