@@ -6,11 +6,10 @@ dic = {}
 
 
 def run_server(host, port):
-    """ """
+    """ For to start server get of port data and host """
 
     loop = asyncio.get_event_loop()
-    coro = loop.create_server
-    (ClientServerProtocol, host, port)
+    coro = loop.create_server(ClientServerProtocol, host, port)
 
     server = loop.run_until_complete(coro)
 
@@ -25,19 +24,21 @@ def run_server(host, port):
 
 
 class ClientServerProtocol(asyncio.Protocol):
-    """ """
+    """ This class for server part of project."""
 
     def connection_made(self, transport):
         self.transport = transport
 
     def _send(self, data_send):
+        """ This method can sends data to the client """
         self.transport.write(data_send.encode())
 
     def _read(self, data_read):
+        """ This method can reads data of the client"""
         return data_read.decode()
 
     def take_put(self, payload):
-        """ """
+        """ This method processes data before safe them"""
 
         try:
             payload = payload.strip()
@@ -60,7 +61,7 @@ class ClientServerProtocol(asyncio.Protocol):
             return 'error\nwrong command\n\n'
 
     def take_get(self, payload):
-        """ """
+        """ This method solves that to send to clients """
 
         get_str = 'ok'
         payload = payload.strip()
@@ -113,10 +114,8 @@ class ClientServerProtocol(asyncio.Protocol):
 
                 if self.take_put(payload) is None:
                     self._send('ok\n\n')
-                    print('self.take_put(payload) is None: = ', 'None')
                 else:
                     self._send(self.take_put(payload))
-                    print('self.take_put(payload)')
 
             # GET
             elif status == 'get':
