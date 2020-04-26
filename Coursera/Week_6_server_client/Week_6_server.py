@@ -101,7 +101,10 @@ class ClientServerProtocol(asyncio.Protocol):
             return 'error\nwrong command\n\n'
 
     def data_received(self, data):
-        """ This method realizes read of the data  of the socket """
+        """ This method realizes read  and write of the data
+            of the socket with methods _read and _send
+
+        """
 
         data_of_client = self._read(data)
 
