@@ -11,7 +11,7 @@ def factorize(x):
 
 
 class TestFactorize(unittest.TestCase):
-    """ """
+    """ Class for testing the function factorize """
 
     def test_wrong_types_raise_exception(self):
         """ Type arguments float and string will call TypeError """
