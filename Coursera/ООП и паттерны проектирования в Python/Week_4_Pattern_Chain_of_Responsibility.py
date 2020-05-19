@@ -13,7 +13,6 @@ class EventGet:
 
     """
     def __init__(self, kind):
-        self.name = 'EventGet'
         self.name_type = self.inp_type(kind)  # It for know,
         # which class must processing a event
 
@@ -75,60 +74,50 @@ class NullHandler:
 class IntHandler(NullHandler):
     """ Processing the events with 'int" type """
     def handle(self, char, event):
-        if event.name == 'EventGet':
+        if event.__class__.__name__ == 'EventGet':
             if event.name_type == 'int':
-
                 return char.integer_field
-
             else:
                 return super().handle(char, event)
 
-        if event.name == 'EventSet':
+        if event.__class__.__name__ == 'EventSet':
             if event.name_type == 'int':
                 char.integer_field = event.value
             else:
-
                 return super().handle(char, event)
 
 
 class FloatHandler(NullHandler):
     """ Processing the events with 'float" type """
     def handle(self, char, event):
-        if event.name == 'EventGet':
+        if event.__class__.__name__ == 'EventGet':
             if event.name_type == 'float':
-
                 return char.float_field
-
             else:
-
                 return super().handle(char, event)
 
-        if event.name == 'EventSet':
+        if event.__class__.__name__ == 'EventSet':
             if event.name_type == 'float':
                 char.float_field = event.value
             else:
-
                 return super().handle(char, event)
 
 
 class StrHandler(NullHandler):
     """ Processing the events with 'str" type """
     def handle(self, char, event):
-        if event.name == 'EventGet':
+        if event.__class__.__name__ == 'EventGet':
             if event.name_type == 'str':
-
                 return char.string_field
-
             else:
-
                 return super().handle(char, event)
 
-        if event.name == 'EventSet':
+        if event.__class__.__name__ == 'EventSet':
             if event.name_type == 'str':
                 char.string_field = event.value
             else:
-
                 return super().handle(char, event)
+
 
 if __name__ == '__main__':
     obj = SomeObject()
