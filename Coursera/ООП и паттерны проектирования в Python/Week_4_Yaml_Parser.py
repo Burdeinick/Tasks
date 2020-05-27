@@ -9,6 +9,15 @@ class AbstractLevel(yaml.YAMLObject):
 
     @classmethod
     def from_yaml(cls, loader, node):
+        """ For me!!!
+            If '- !easy_level' not has nodes (- !easy_level),
+            then ...loader.construct_scalar(node),
+            if has nodes (- !medium_level
+                            enemy:
+                                - rat),
+            then ...loader.construct_mapping(node)
+
+        """
         _map = cls.Map()
         _obj = cls.Objects()
         config = loader.construct_mapping(node)
